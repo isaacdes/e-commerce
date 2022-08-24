@@ -5,6 +5,7 @@ import { BiStoreAlt } from "react-icons/bi";
 import Button from "../Button/Button";
 import "./Navbar.scss";
 import { IconContext } from "react-icons/lib";
+import Cart from "../../Cart/Cart";
 
 const Navbar = () => {
   const [click, setClick] = useState(false);
@@ -74,9 +75,13 @@ const Navbar = () => {
                   </Link>
                 )}
               </li>
+              <li><Cart /></li>
             </ul>
+            
           </div>
+          
         </div>
+       
       </IconContext.Provider>
     </>
   );
