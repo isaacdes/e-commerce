@@ -1,58 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { fetch_Products } from "../../../redux/fakeStore/asyncReducers";
 
-import {
-  setProducts,
-  removeSelectedProducts,
-} from "../../../redux/actions/productActions";
 import Card from "../../UI/Card/Card";
-import axios from "axios";
-import "./Products.scss";
-import SelectedProduct from "./SelectedProduct";
 
+import classes from "./Products.module.scss";
+
+/**
+ * this component renders the product page and displays each product using a Card component.
+ * This component uses styles from Products.module.scss
+ * @returns It returns the Products component with the products fecthed from the server("https://fakestoreapi.com/products")
+ */
 const Products = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.allProducts.products);
+  const navigate = useNavigate();
 
-  const [selectedProductShown, setSelectedProductShown] = useState(false);
-
-  const showSelectedProduct = (data) => {
-    setSelectedProductShown(true);
-  };
-  const hideSelectedProduct = () => {
-    dispatch(removeSelectedProducts());
-    setSelectedProductShown(false);
-  };
-
-  const fetchProducts = async () => {
-    const response = await axios
-      .get("https://fakestoreapi.com/products")
-      .catch((err) => {
-        console.log("error", err);
-      });
-
-    dispatch(setProducts(response.data));
-  };
+  const products = useSelector((state) => state.fakeStore.products);
+  // products.filter()
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    dispatch(fetch_Products());
+  }, [dispatch]);
 
   return (
-    <div className="products-wrapper">
+    <div className={classes["products-wrapper"]}>
       <h1>All Products</h1>
-      <div className="product-list">
-        {selectedProductShown && (
-          <SelectedProduct onClose={hideSelectedProduct} />
-        )}
+      <div className={classes["product-list"]}>
         {products.map((data) => {
           return (
-            <div
-              className="card-div"
-              onClick={showSelectedProduct}
-              key={data.id}
-            >
+            <div className={classes["card-div"]} key={data.id}>
               <Card
+                onSelect={() => {
+                  navigate(`/product/${data.id}`);
+                }}
                 imageUrl={data.image}
                 title={data.title}
                 price={data.price}

@@ -1,3 +1,11 @@
+# fakeStore Api Application
+This appliactions uses https://reqres.in/ for user Login and Registration
+and uses https://fakestoreapi.com/products to get all the products
+
+The application shows the use of redux with async calls using redux-thunk, 
+the use higher order components using authguard
+
+the overall state of the user as loggedIn and products is managged by redux.
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

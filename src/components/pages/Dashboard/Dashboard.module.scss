@@ -1,0 +1,46 @@
+.section {
+    // background-color: aqua;
+    color: white;
+    width: 100vw;
+    height: 100vh;
+
+    padding: 5rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    h1 {
+        font-size: 5rem;
+    }
+
+    
+
+    .section-btns {
+        margin: 1rem;
+
+        button{
+            margin-top: 2rem;
+            font-size: 2rem;
+            background-color: transparent;
+            border: none;
+            color: green;
+        }
+        button:hover {
+            background-color: white;
+            border-radius: 3rem;
+        }
+        
+    }
+}
+
+
+@media screen and (max-width: 960px) { 
+
+    .section {
+        font-size: 3rem;
+    }
+    .section-btns {
+        button {
+            font-size: 1rem;
+        }
+    }
+}

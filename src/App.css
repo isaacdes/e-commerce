@@ -3,3 +3,8 @@
   margin: 0;
   padding: 0;
 }
+
+body {
+  background-image: url("./assets/images/dark.jpg");
+  /* background-repeat:repeat; */
+}

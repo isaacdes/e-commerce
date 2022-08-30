@@ -5,16 +5,33 @@ import { BiStoreAlt } from "react-icons/bi";
 import Button from "../Button/Button";
 import "./Navbar.scss";
 import { IconContext } from "react-icons/lib";
+
+import { useSelector } from "react-redux";
+
 import Cart from "../../Cart/Cart";
 
+/**
+ * this component contains the navbar content,
+ *  the button for login/logout is conditionally chnaged 
+ * based on the state of isUSerLoggedIn from the userStore redux state
+ * It uses the styles from Navbar.scss
+ * @returns It return a Navbar component
+ */
 const Navbar = () => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
+  const [btnText, setBtnText] = useState("Login");
+
+  const userIsLoggedIn = useSelector((state) => state.userStore.userIsLogged);
 
   const handleClick = () => setClick(!click);
 
   const closeMobileMenu = () => setClick(false);
 
+  /**
+   * This function toggles when the innerWidth of the page becomes less than 960
+   * 
+   */
   const showButton = () => {
     if (window.innerWidth <= 960) {
       setButton(false);
@@ -26,6 +43,17 @@ const Navbar = () => {
   useEffect(() => {
     showButton();
   }, []);
+
+  /**
+   * this useeffect is to get the updated state from the redux
+   */
+  useEffect(() => {
+    if (userIsLoggedIn) {
+      setBtnText("Logout");
+    } else {
+      setBtnText("Login");
+    }
+  }, [userIsLoggedIn, btnText]);
 
   window.addEventListener("resize", showButton);
 
@@ -48,40 +76,44 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-links" to="/products" onClick={closeMobileMenu}>
+                <Link
+                  className="nav-links"
+                  to="/products"
+                  onClick={closeMobileMenu}
+                >
                   Products
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-links" to="/aboutUs" onClick={closeMobileMenu}>
-                  About Us
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-links" to="/contacts" onClick={closeMobileMenu}>
-                  Contact
-                </Link>
-              </li>
+
               <li className="nav-btn">
                 {button ? (
-                  <Link to="/signUp" className="btn-link" onClick={closeMobileMenu}>
-                    <Button buttonStyle="btn--outline">Sign Up</Button>
+                  // Logout with button
+                  <Link
+                    to={`/${btnText}`}
+                    className="btn-link"
+                    onClick={closeMobileMenu}
+                  >
+                    <Button buttonStyle="btn--outline">{btnText}</Button>
                   </Link>
                 ) : (
-                  <Link to="/signUp" className="btn-link"onClick={closeMobileMenu} >
+                  //logout without button
+                  <Link
+                    to={`/${btnText}`}
+                    className="btn-link"
+                    onClick={closeMobileMenu}
+                  >
                     <Button buttonStyle="btn--outline" buttonSize="btn--mobile">
-                      Sign Up
+                      {btnText}
                     </Button>
                   </Link>
                 )}
               </li>
-              <li><Cart /></li>
+              <div onClick={closeMobileMenu} className="cart-btn">
+                <Cart />
+              </div>
             </ul>
-            
           </div>
-          
         </div>
-       
       </IconContext.Provider>
     </>
   );

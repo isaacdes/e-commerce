@@ -1,0 +1,66 @@
+$radius: 0.2rem;
+
+
+.card {
+    overflow: hidden;
+    box-shadow: 0 2px 20px grey;
+
+    border-radius: $radius;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+    cursor: pointer;
+    transition: transform 200ms ease-in;
+
+}
+
+.card-body {
+    margin-left: 1rem;
+    padding: 1rem;
+}
+
+.card-title {
+    padding: 1rem;
+}
+
+.card-description {
+    padding: 0 1rem;
+}
+
+.card-btn {
+    padding: 1rem;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 1rem;
+
+    background-color: transparent;
+    border-radius: $radius;
+    transition: background 200ms ease-in;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+
+    .card-btn {
+        background-color: green;
+    }
+}
+
+.card-btn:hover {
+    transform: scale(1);
+}
+
+.container {
+    padding: 2px 16px;
+}
+
+.card-img {
+    margin-top: 10px;
+    height: 12rem;
+    width: 100%;
+    // border-radius: 2rem;
+    object-fit: contain;
+}

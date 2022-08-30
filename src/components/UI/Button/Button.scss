@@ -11,6 +11,8 @@
     white-space: nowrap;
 }
 
+
+
 .btn--primary {
     background-color: var(--primary);
     color: #242424;
@@ -85,9 +87,13 @@
 }
 
 .green {
-    background-color: transparent;
-    color:  #06e64d;;
+    background-color: #06e64d;
+    color:  #ffff;
     border: none;
+}
+
+.green:hover {
+    color: #06e64d;
 }
 .red {
     background-color: #f21524;
@@ -95,6 +101,18 @@
     border: none;
 }
 
+.red-text{
+    color: #f21524;
+    width: 30%;
+}
+.red-text:hover {
+    color: #ffff;
+    background-color: #f00946;
+   
+}
+.red:hover {
+    color: #f21524;
+}
 .btn-link {
     display: flex;
     justify-content: center;

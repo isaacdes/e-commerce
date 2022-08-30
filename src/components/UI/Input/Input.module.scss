@@ -1,0 +1,21 @@
+.text-input {
+
+    // margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+
+    >label {
+        font-size: 12;
+        color: black;
+        // margin-bottom: 10px;
+
+    }
+
+    >input {
+        height: 40px;
+        width: 350px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+
+    }
+}

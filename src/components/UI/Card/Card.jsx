@@ -1,22 +1,24 @@
 import React from "react";
-import "./Card.scss";
+import classes from "./Card.module.scss";
 
-import { useDispatch } from "react-redux";
-import { selectedProducts } from "../../../redux/actions/productActions";
-
+/**
+ * This is a card component
+ * @param {*} props it accepets imageUrl, title, brand as category, and price as props to render the contents on the page
+ * @returns it returns a card component with styles added from Card.module.scss
+ */
 const Card = (props) => {
-  const dispatch = useDispatch();
-  const onModalClick = () => {
-    dispatch(selectedProducts(props));
-  };
   return (
-    <div className="card" onClick={onModalClick}>
-      <div className="card-body">
-        <img src={props.imageUrl} alt={props.alt} className="card-img" />
-        <h3 className="card-title">{props.title} </h3>
-        <b className="card-category">{props.brand}</b>
+    <div className={classes["card"]} onClick={props.onSelect}>
+      <div className={classes["card-body"]}>
+        <img
+          src={props.imageUrl}
+          alt={props.alt}
+          className={classes["card-img"]}
+        />
+        <h3 className={classes["card-title"]}>{props.title} </h3>
+        <b className={classes["card-category"]}>{props.brand}</b>
 
-        <p className="card-price">Cost : {props.price}$</p>
+        <p className={classes["card-price"]}>Cost : {props.price}$</p>
       </div>
     </div>
   );
