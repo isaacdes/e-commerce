@@ -6,6 +6,8 @@ The application shows the use of redux with async calls using redux-thunk,
 the use higher order components using authguard
 
 the overall state of the user as loggedIn and products is managged by redux.
+
+The application is reponsive 
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
